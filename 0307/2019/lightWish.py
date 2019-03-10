@@ -21,7 +21,7 @@ class LightWish():
         lt = bs(text, 'html.parser').find('input', {'id': 'lt'})['value']
         execution = bs(text, 'html.parser').find('input', {'name': 'execution'})['value']
         key = self.user + self.password + lt
-        rsa = os.popen("node /home/ubuntu/wechat/luckyDay/desEncrypt.js {}".format(key), "r").read().strip()
+        rsa = os.popen("node desEncrypt.js {}".format(key), "r").read().strip()
         data = {"rsa": rsa, "ul": '13', "pl": '6', "lt": lt, "_eventId": "submit", "execution": execution}
         headers = {"Referer": "http://zhlgd.whut.edu.cn/tpass/login?service=http%3A%2F%2Fias.sso.wutnews.net%2Fportal.php%3Fposturl%3Dhttps%253A%252F%252Fapi-game.wutnews.net%252Flucky_2019%252flogin%252fias%26continueurl%3D", "User-Agent": "Mozilla/5.0 (X11; Linux x86_64; rv:64.0) Gecko/20100101 Firefox/64.0"}
         text = self.s.post(self.loginUrl, data=data, headers=headers).text
